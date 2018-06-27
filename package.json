@@ -1,0 +1,24 @@
+{
+  "name": "micro-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "micro"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OpenWebinarsNet/micro-json.git"
+  },
+  "author": "Miguh Ruiz <m@miguhruiz.xyz> (https://miguhruiz.xyz/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OpenWebinarsNet/micro-json/issues"
+  },
+  "homepage": "https://github.com/OpenWebinarsNet/micro-json#readme",
+  "dependencies": {
+    "micro": "^9.3.2",
+    "node-fetch": "^2.1.2"
+  }
+}
