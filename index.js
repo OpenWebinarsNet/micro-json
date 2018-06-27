@@ -1,5 +1,8 @@
 const micro = require('micro')
 const fetch = require('node-fetch') // Fetch API Polyfill
+const httpHash = require('http-hash')
+
+const hash = new httpHash();
 
 let uri = 'https://jsonplaceholder.typicode.com/posts'
 
@@ -32,8 +35,26 @@ function havePost(id)
     return contain
 }
 
-module.exports = async function (req, res) {
+hash.set('/', async function (req, res) {
     await getNPosts([1,2,3,4,5])
 
     await micro.send(res, 200, request_result)
+})
+
+hash.set('/start', (req, res) => {
+    micro.send(res, 200, { status: 200, message: 'Starting the self-diriving car... Please wait :)' })
+})
+
+module.exports = async function (req, res) {
+    let match = hash.get(req.url)
+
+    if(match.handler)
+    {
+        try {
+            return match.handler(req, res)
+        }
+        catch (e) {
+            micro.send(res, 500, { error: e.message })
+        }
+    }
 }
